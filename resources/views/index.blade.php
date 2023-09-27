@@ -1,7 +1,5 @@
-
 @extends('layouts.layout')
 @section('content')
-
     <div class="row">
         <div class="col-3">
             <div class="card overflow-hidden">
