@@ -3,18 +3,19 @@
     <div class="row">
         @include('sidebar')
         <div class="col-6">
-            
+
             @include('shared.success-msg')
             @include('shared.submit-idea')
             <hr>
 
             @foreach ($ideas as $idea)
-                
-            <div class="mt-3">
-                @include('shared.idea-card')
-            </div>
-
+                <div class="mt-3">
+                    @include('shared.idea-card')
+                </div>
             @endforeach
+            <div class="mt-3">
+                {{ $ideas->links() }}
+            </div>
         </div>
         <div class="col-3">
             <div class="card">
@@ -23,8 +24,7 @@
                 </div>
                 <div class="card-body">
                     <input placeholder="...
-                    " class="form-control w-100" type="text"
-                        id="search">
+                    " class="form-control w-100" type="text" id="search">
                     <button class="btn btn-dark mt-2"> Search</button>
                 </div>
             </div>
@@ -63,6 +63,5 @@
                 </div>
             </div>
         </div>
-</div>
-
+    </div>
 @endsection
