@@ -1,13 +1,25 @@
 <?php
-
+;
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use App\Models\Idea;
 class DashboardController extends Controller
 {
     public function index(){
         
-        return view('index');
+        $idea = new Idea(
+            [
+                'content' => "Test Testtata umta huletaa",
+                'likes' => 200,
+            ]
+            );
+
+        $idea->save();
+
+        return view('index', [
+            'ideas' => Idea::all()
+        ]);
     }
 }
