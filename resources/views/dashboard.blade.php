@@ -3,8 +3,8 @@
     <div class="row">
         @include('sidebar')
         <div class="col-6">
-
             
+            @include('shared.success-msg')
             @include('shared.submit-idea')
             <hr>
 
