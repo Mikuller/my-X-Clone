@@ -9,19 +9,27 @@
                         </a></h5>
                 </div>
             </div>
+            <div>
+                <form method="POST" action ="{{route('idea.destroy', $idea->id)}}">
+                  @csrf
+                  @method('delete')
+                  <button class="btn btn-danger  btn-sm"> X </button>
+                </form>
+          </div>
         </div>
+        
     </div>
     <div class="card-body">
-        <p class="fs-6 fw-light text-muted">{{$idea -> content}}
+        <p class="fs-6 fw-light text-muted">{{ $idea->content }}
         </p>
         <div class="d-flex justify-content-between">
             <div>
                 <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
-                    </span> {{$idea -> likes}} </a>
+                    </span> {{ $idea->likes }} </a>
             </div>
             <div>
                 <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
-                    3-5-2023 </span>
+                    {{ $idea->created_at }} </span>
             </div>
         </div>
         <div>
@@ -35,8 +43,7 @@
             <hr>
             <div class="d-flex align-items-start">
                 <img style="width:35px" class="me-2 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Luigi"
-                    alt="Luigi Avatar">
+                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Luigi" alt="Luigi Avatar">
                 <div class="w-100">
                     <div class="d-flex justify-content-between">
                         <h6 class="">Luigi
