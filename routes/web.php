@@ -18,7 +18,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::post('/', [IdeaController::class, 'store'])->name('idea.store');
+
+Route::get('/{idea}', [IdeaController::class, 'show'])->name('idea.show');
+
 Route::delete('/{id}', [IdeaController::class, 'delete'])->name('idea.destroy');
 
 Route::get('/terms', function(){

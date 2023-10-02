@@ -24,9 +24,11 @@ class IdeaController extends Controller
     }
 
     public function delete(Idea $id){
-
     $id->delete();
 
      return redirect()->route('dashboard')-> with('success', "Idea deleted Successfully");
     }
+     public function show(Idea $idea){
+        return view('ideas.show',['idea' => $idea]);
+     }
 }
