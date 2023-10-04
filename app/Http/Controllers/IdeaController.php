@@ -15,7 +15,7 @@ class IdeaController extends Controller
             ]
             );
         $idea = new Idea([
-            'content' => request()->get('idea','')
+            'content' => request()->get('content','')
         ]);
 
         $idea->save();
@@ -28,7 +28,20 @@ class IdeaController extends Controller
 
      return redirect()->route('dashboard')-> with('success', "Idea deleted Successfully");
     }
+
      public function show(Idea $idea){
         return view('ideas.show', compact('idea'));
      }
+
+     public function edit(Idea $idea){
+        $editIdea = true;
+        return view('ideas.show', compact('idea','editIdea'));
+     }
+
+     public function update(Idea $idea){
+         $idea->content = request('content',"");
+         $idea -> save();
+
+        return redirect()->route('idea.show', $idea)->with('success', "Idea updated successfully");
+    }
 }
