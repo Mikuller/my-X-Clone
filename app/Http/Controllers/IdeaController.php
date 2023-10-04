@@ -11,7 +11,7 @@ class IdeaController extends Controller
 
         request()->validate(
             [
-                'idea' =>'required|max:100|min:2'
+                'content' =>'required|max:100|min:2'
             ]
             );
         $idea = new Idea([
@@ -39,6 +39,13 @@ class IdeaController extends Controller
      }
 
      public function update(Idea $idea){
+
+        request()->validate(
+            [
+                'content' =>'required|max:100|min:2'
+            ]
+            );
+
          $idea->content = request('content',"");
          $idea -> save();
 
