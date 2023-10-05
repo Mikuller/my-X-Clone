@@ -3,22 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class IdeaController extends Controller
 {
     public function store(){
 
-        request()->validate(
+        $validated= request()->validate(
             [
                 'content' =>'required|max:100|min:2'
             ]
             );
-        $idea = new Idea([
-            'content' => request()->get('content','')
-        ]);
+           
 
-        $idea->save();
+        Idea::create($validated);
 
         return redirect()->route('dashboard')->with('success', "Idea Created Successfully");
     }
@@ -30,6 +29,8 @@ class IdeaController extends Controller
     }
 
      public function show(Idea $idea){
+
+       
         return view('ideas.show', compact('idea'));
      }
 
@@ -40,14 +41,13 @@ class IdeaController extends Controller
 
      public function update(Idea $idea){
 
-        request()->validate(
+        $validated=request()->validate(
             [
                 'content' =>'required|max:100|min:2'
             ]
             );
 
-         $idea->content = request('content',"");
-         $idea -> save();
+         $idea->update($validated);
 
         return redirect()->route('idea.show', $idea)->with('success', "Idea updated successfully");
     }
