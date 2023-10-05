@@ -1,3 +1,15 @@
+<form method="POST" action="{{route('idea.comment.store', $idea->id)}}">
+    @csrf
+    <div class="mb-3">
+        <textarea name="content" class="fs-6 form-control" rows="1"></textarea>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary btn-sm"> Post Comment </button>
+    </div>
+
+    <hr>
+</form>
+
 <div class="d-flex align-items-start">
     <img style="width:35px" class="me-2 avatar-sm rounded-circle"
         src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Luigi" alt="Luigi Avatar">

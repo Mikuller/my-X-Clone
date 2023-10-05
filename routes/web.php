@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IdeaController;
 use Faker\Guesser\Name;
@@ -21,13 +22,15 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::post('/', [IdeaController::class, 'store'])->name('idea.store');
 
-Route::get('/{idea}', [IdeaController::class, 'show'])->name('idea.show');
+Route::get('/idea/{idea}', [IdeaController::class, 'show'])->name('idea.show');
 
 Route::get('/{idea}/edit', [IdeaController::class, 'edit'])->name('idea.edit');
 
 Route::put('/{idea}/update', [IdeaController::class, 'update'])->name('idea.update');
 
 Route::delete('/{id}', [IdeaController::class, 'delete'])->name('idea.destroy');
+
+Route::POST('/ideas/{idea}/comment', [CommentController::class, 'store'])->name('idea.comment.store');
 
 Route::get('/terms', function(){
     return view('terms');

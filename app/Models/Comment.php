@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+
+    
+    protected $fillable = [
+        'content',
+        'idea_id'
+    ];
+
     use HasFactory;
 }
