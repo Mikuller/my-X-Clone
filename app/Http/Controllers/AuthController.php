@@ -32,4 +32,20 @@ class AuthController extends Controller
         return redirect()->route('dashboard')->with('success',"You have successfully Registerd");
 
     }
+
+    public function login(){
+
+        return view('auth.login');
+    }
+
+    public function authenticate(){
+        $validate = request()->validate(
+            [
+              'email'=>'required|email|unique:users,email|',
+              'password'=>'required|min:8|confirmed'
+            ]
+            );
+
+            return redirect()->route('dashboard')->with('success',"You're Logged in successfully!");
+    }
 }

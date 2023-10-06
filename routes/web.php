@@ -23,11 +23,6 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::post('/', [IdeaController::class, 'store'])->name('idea.store');
 
-Route::get('/register/form', [AuthController::class, 'index'])->name('register');
-
-Route::post('/register', [AuthController::class, 'store'])->name('register.save');
-
-
 Route::get('/show/{idea}', [IdeaController::class, 'show'])->name('idea.show');
 
 Route::get('/{idea}/edit', [IdeaController::class, 'edit'])->name('idea.edit');
@@ -37,6 +32,17 @@ Route::put('/{idea}/update', [IdeaController::class, 'update'])->name('idea.upda
 Route::delete('/{id}', [IdeaController::class, 'delete'])->name('idea.destroy');
 
 Route::POST('/ideas/{idea}/comment', [CommentController::class, 'store'])->name('idea.comment.store');
+
+Route::get('/register', [AuthController::class, 'index'])->name('register');
+
+Route::post('/register', [AuthController::class, 'store'])->name('register.save');
+
+Route::get('/login', [AuthController::class, 'login']);
+
+Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
+
+
+
 
 Route::get('/terms', function(){
     return view('terms');

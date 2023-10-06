@@ -13,10 +13,10 @@
                     <a class="nav-link active" aria-current="page" href="/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/register/form">Register</a>
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile">Profile</a>
+                    <a class="nav-link" href="/login">Profile</a>
                 </li>
             </ul>
         </div>
