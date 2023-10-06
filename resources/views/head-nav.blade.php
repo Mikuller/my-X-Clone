@@ -9,15 +9,30 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Profile</a>
-                </li>
+                @guest
+
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+
+                @endguest
+
+                @auth
+
+                    <li class="nav-item">
+                        <a class="nav-link bg-red" href="/logout">Logout</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">{{ Auth::user()->name }}</a>
+                    </li>
+
+
+                @endauth
             </ul>
         </div>
     </div>
