@@ -4,7 +4,7 @@
         @csrf
         <div class="mb-3">
             <textarea class="form-control" name="content" id="content" rows="3"></textarea>
-            @error('idea')
+            @error('content')
                 <span class="fs-6 text-danger"> {{ $message }} </span>
             @enderror
         </div>
