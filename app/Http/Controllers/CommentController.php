@@ -18,8 +18,10 @@ class CommentController extends Controller
 
           $comment = new Comment([
             'content'=> request('content'),
-            'idea_id'=> $idea->id
+            'idea_id'=> $idea->id,
+            'user_id'=> auth()->id()
           ]);
+
 
           $comment->save();       
 

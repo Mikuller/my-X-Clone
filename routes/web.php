@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\AuthController;
 use Faker\Guesser\Name;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -23,13 +24,13 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::post('/', [IdeaController::class, 'store'])->name('idea.store');
 
-Route::get('/show/{idea}', [IdeaController::class, 'show'])->name('idea.show');
+Route::get('/show/{idea}', [IdeaController::class, 'show'])->name('idea.show')->middleware('auth');
 
-Route::get('/{idea}/edit', [IdeaController::class, 'edit'])->name('idea.edit');
+Route::get('/{idea}/edit', [IdeaController::class, 'edit'])->name('idea.edit')->middleware('auth');
 
-Route::put('/{idea}/update', [IdeaController::class, 'update'])->name('idea.update');
+Route::put('/{idea}/update', [IdeaController::class, 'update'])->name('idea.update')->middleware('auth');
 
-Route::delete('/{id}', [IdeaController::class, 'delete'])->name('idea.destroy');
+Route::delete('/{id}', [IdeaController::class, 'delete'])->name('idea.destroy')->middleware('auth');
 
 Route::POST('/ideas/{idea}/comment', [CommentController::class, 'store'])->name('idea.comment.store');
 
