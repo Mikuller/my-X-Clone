@@ -23,7 +23,7 @@ class IdeaController extends Controller
             ->with('success', 'Idea Created Successfully');
     }
 
-    public function delete(Idea $id)
+    public function destroy(Idea $id)
     {
         $id->delete();
 

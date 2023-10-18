@@ -22,19 +22,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::group(['prefix'=> 'ideas/', 'as'=>'idea.', 'middleware'=>['auth']], function (){
+Route::resource('idea',IdeaController::class)->except(['index','create','show'])->middleware('auth');
 
-    Route::post('', [IdeaController::class, 'store'])->name('store')->withoutMiddleware('auth');
+Route::resource('idea',IdeaController::class)->only(['show']);
 
-    Route::get('show/{idea}', [IdeaController::class, 'show'])->name('show')->withoutMiddleware('auth');
-    
-    Route::get('{idea}/edit', [IdeaController::class, 'edit'])->name('edit');
-    
-    Route::put('{idea}/update', [IdeaController::class, 'update'])->name('update');
-    
-    Route::delete('{id}', [IdeaController::class, 'delete'])->name('destroy');
-    
-    Route::POST('{idea}/comment', [CommentController::class, 'store'])->name('comment.store'); 
-
-});
-
+Route::resource('idea.comment', CommentController::class)->only('store');
