@@ -26,4 +26,4 @@ Route::resource('idea',IdeaController::class)->except(['index','create','show'])
 
 Route::resource('idea',IdeaController::class)->only(['show']);
 
-Route::resource('idea.comment', CommentController::class)->only('store');
+Route::resource('idea.comment', CommentController::class)->only('store')->middleware('auth');
