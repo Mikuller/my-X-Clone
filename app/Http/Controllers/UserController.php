@@ -24,8 +24,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $editting = true;
-        return view('user.show', compact('user','editting'));
+       
+        $ideas = $user->ideas()->paginate(5);
+
+        return view('user.edit', compact('user', 'ideas'));
     }
 
     /**
@@ -33,7 +35,18 @@ class UserController extends Controller
      */
     public function update(User $user)
     {
-        //
+        $validated = request()->validate(
+            [
+                'name'=>'required|max:40|min:2',
+                'bio'=>'nullable|max:500',
+            ]
+            );
+
+        $user->update($validated);
+
+        return redirect()->route('user.show', $user->id)->with('success', "profile updated successfully");
+
+
     }
 
 

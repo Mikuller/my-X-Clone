@@ -4,10 +4,8 @@
         @include('shared.sidebar')
         <div class="col-6">
 
-            @include('shared.success-msg')
-            
             <div class="mt-3">
-                @include('user.profile-show')
+                @include('user.profile-edit')
             </div>
             <hr>
             @forelse ($ideas as $idea)
