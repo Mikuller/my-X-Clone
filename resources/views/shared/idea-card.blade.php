@@ -3,7 +3,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <img style="width:50px" class="me-2 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $idea->user->name }}"
+                    src="{{$idea->user->getImageURL()}}"
                     alt="{{ $idea->user->name }}">
                 <div>
                     <h5 class="card-title mb-0"><a href="{{route('user.show', $idea->user->id)}}"> {{ $idea->user->name }}

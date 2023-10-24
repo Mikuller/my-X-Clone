@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -39,59 +40,25 @@ class UserController extends Controller
             [
                 'name'=>'required|max:40|min:2',
                 'bio'=>'nullable|max:500',
+                'image'=>'image',
             ]
             );
+ 
+            if(request()->has('image')){
+
+                $imagePath = request()->file('image')->store('profiles', 'public');
+                $validated['image'] = $imagePath;
+                
+                Storage::disk('public')->delete($user->image);
+            }
+
+
 
         $user->update($validated);
 
         return redirect()->route('user.show', $user->id)->with('success', "profile updated successfully");
 
 
-    }
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     //
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    // public function create()
-    // {
-    //     //
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    // public function destroy(string $id)
-    // {
-    //     //
-    // }
 }

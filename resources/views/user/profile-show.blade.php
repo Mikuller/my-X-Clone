@@ -3,7 +3,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <img style="width:150px" class="me-3 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="{{ $user->name }}">
+                    src="{{$user->getImageURL()}}" alt="{{ $user->name }}">
 
                 <div>
 

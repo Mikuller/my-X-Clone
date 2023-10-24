@@ -24,7 +24,11 @@
                 @auth
 
                     <li class="nav-item">
-                        <a class="nav-link bg-red" href="/logout">Logout</a>
+                        <form method="POST" action={{route('logout')}}>
+                            @csrf
+                            <button class="btn btn-danger btn-sm">Logout</button>
+                        </form>
+                       
                     </li>
 
                     <li class="nav-item">
