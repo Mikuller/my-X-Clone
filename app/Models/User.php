@@ -17,23 +17,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'bio',
-        'image',
-    ];
+    protected $fillable = ['name', 'email', 'password', 'bio', 'image'];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast.
@@ -44,21 +35,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function ideas(){
+    public function ideas()
+    {
         return $this->hasMany(Idea::class)->latest();
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class)->latest();
     }
 
-    function getImageURL(){
-    
-        if($this->image){
-            return url('storage/'.$this->image);
+    public function followings()
+    {
+       return $this->belongsToMany(User::class, 'follower_user', 'follower_id', 'user_id')->withTimestamps();
+    }
+    public function followers()
+    {
+       return $this->belongsToMany(User::class, 'follower_user', 'user_id' , 'follower_id')->withTimestamps();
+    }
+    public function follows(User $user){
+        return $this->followings()->where('user_id', $user->id)->exists();
+    }
+
+    function getImageURL()
+    {
+        if ($this->image) {
+            return url('storage/' . $this->image);
         }
 
-         return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={$this->image}";
-        }
-    
+        return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={$this->image}";
+    }
 }

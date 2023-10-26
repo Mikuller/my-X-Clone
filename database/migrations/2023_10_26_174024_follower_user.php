@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
-    
-            $table->timestamps();
+        Schema::create('follower_user', function (Blueprint $table) {
+        $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+        $table->foreignId('follower_id')->constrained('users')->cascadeOnDelete();
+        $table->timestamps();
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('failed_jobs');
+        //
     }
 };

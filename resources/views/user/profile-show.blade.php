@@ -2,8 +2,8 @@
     <div class="px-3 pt-4 pb-2">
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img style="width:150px" class="me-3 avatar-sm rounded-circle"
-                    src="{{$user->getImageURL()}}" alt="{{ $user->name }}">
+                <img style="width:150px" class="me-3 avatar-sm rounded-circle" src="{{ $user->getImageURL() }}"
+                    alt="{{ $user->name }}">
 
                 <div>
 
@@ -22,12 +22,12 @@
             @endauth
 
         </div>
-        
+
         <div class="px-2 mt-4">
             <h5 class="fs-5"> Bio : </h5>
 
             <p class="fs-6 fw-light">
-                {{$user->bio}}
+                {{ $user->bio }}
             </p>
 
             <div class="d-flex justify-content-start">
@@ -40,9 +40,21 @@
             </div>
             @auth
                 @if (auth()->id() != $user->id)
-                    <div class="mt-3">
-                        <button class="btn btn-primary btn-sm"> Follow </button>
-                    </div>
+                    @if (Auth::user()->follows($user))
+                        <form method="POST" action=" {{ route('user.unfollow', $user->id) }} ">
+                            @csrf
+                            <div class="mt-3">
+                                <button class="btn btn-danger btn-sm"> Unfollow </button>
+                            </div>
+                        </form>
+                    @else
+                        <form method="POST" action=" {{ route('user.follow', $user->id) }} ">
+                            @csrf
+                            <div class="mt-3">
+                                <button class="btn btn-primary btn-sm"> Follow </button>
+                            </div>
+                        </form>
+                    @endif
                 @endif
             @endauth
         </div>

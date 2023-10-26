@@ -36,6 +36,8 @@ class UserController extends Controller
      */
     public function update(User $user)
     {
+
+
         $validated = request()->validate(
             [
                 'name'=>'required|max:40|min:2',
@@ -61,4 +63,22 @@ class UserController extends Controller
 
         }
 
-}
+        public function follow(User $user){
+
+            $follower = auth()->user();
+            $follower->followings()->attach($user);
+
+            return redirect()->route('user.show', $user->id)->with('success', "You have followed $user->name successfully");
+
+        }
+
+        public function unfollow(User $user){
+
+            $follower = auth()->user();
+            $follower->followings()->detach($user);
+
+            return redirect()->route('user.show', $user->id)->with('success', "You have unfollowed $user->name successfully");
+
+        }
+
+    }

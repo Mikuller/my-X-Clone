@@ -30,3 +30,7 @@ Route::resource('idea',IdeaController::class)->only(['show']);
 Route::resource('idea.comment', CommentController::class)->only('store')->middleware('auth');
 
 Route::resource('user', UserController::class)->only('show','edit','update')->middleware('auth');
+
+Route::post('users/{user}/follow', [UserController::class, 'follow'])->name('user.follow')->middleware('auth');
+
+Route::post('users/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow')->middleware('auth');
