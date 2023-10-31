@@ -13,10 +13,10 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                        <a class=" {{  (Route::is('login'))? 'active':''}} nav-link" aria-current="page" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
+                        <a class="{{ (Route::is('register'))? 'active':'' }} nav-link" href="/register">Register</a>
                     </li>
 
                 @endguest
@@ -32,7 +32,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('user.show', Auth::id())}}">{{ Auth::user()->name }}</a>
+                        <a class="{{ (Route::is('user.show', Auth::id() ))? 'active':'' }} nav-link" href="{{route('user.show', Auth::id())}}">{{ Auth::user()->name }}</a>
                     </li>
 
 
