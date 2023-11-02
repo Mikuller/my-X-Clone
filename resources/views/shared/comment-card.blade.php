@@ -9,7 +9,7 @@
 </form>
 <hr>
 
-@foreach ($idea->comments as $comment)
+@forelse ($idea->comments as $comment)
     <div class="d-flex align-items-start">
 
         <img style="width:35px" class="me-2 avatar-sm rounded-circle"
@@ -25,4 +25,7 @@
 
     </div>
     <hr>
-@endforeach
+    @empty
+    <p class="text-center my-3">No Comments Found</p>
+
+@endforelse

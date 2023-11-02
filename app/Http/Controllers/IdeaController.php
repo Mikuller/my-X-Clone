@@ -55,4 +55,19 @@ class IdeaController extends Controller
             ->route('idea.show', $idea)
             ->with('success', 'Idea updated successfully');
     }
+
+    public function like(Idea $idea){
+        $liked_idea = $idea;
+        $liked_idea->likes()->attach(auth()->id());//works weither it's id or user object
+        
+        return redirect()->route('dashboard')->with('success', "Liked successfully!");
+    }
+    public function unlike(Idea $idea){
+        $liked_idea = $idea;
+        $liked_idea->likes()->detach(auth()->id());//works weither it's id or user object
+        
+        return redirect()->route('dashboard')->with('success', "Unliked successfully!");
+    }
+
+    
 }

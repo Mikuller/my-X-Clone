@@ -35,6 +35,11 @@ Route::post('users/{user}/follow', [UserController::class, 'follow'])->name('use
 
 Route::post('users/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow')->middleware('auth');
 
+
+Route::get('ideas/{idea}/like', [IdeaController::class, 'like'])->name('idea.like')->middleware('auth');
+
+Route::get('ideas/{idea}/unlike', [IdeaController::class, 'unlike'])->name('idea.unlike')->middleware('auth');
+
 Route::get('/terms', function (){
     return view('terms');
 })->name('terms')->middleware('auth');
