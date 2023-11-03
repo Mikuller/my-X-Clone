@@ -25,8 +25,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('alter.idea', function (User $user, Idea $idea) : bool {
-            return ((bool) $user->is_admin || $user->id === $idea->user_id );
-        });
+        // Gate::define('alter.idea', function (User $user, Idea $idea) : bool {
+        //     return ((bool) $user->is_admin || $user->id === $idea->user_id );
+        // });
     }
 }

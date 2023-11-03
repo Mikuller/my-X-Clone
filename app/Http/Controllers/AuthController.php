@@ -27,7 +27,7 @@ class AuthController extends Controller
         [
             'name'=>$validate['name'],
             'email'=>$validate['email'],
-            'password'=>Hash::make($validate['password'])
+            //'password'=>Hash::make($validate['password'])
         ]
         );
 

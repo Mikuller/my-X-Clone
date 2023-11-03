@@ -25,7 +25,7 @@ class IdeaController extends Controller
 
     public function destroy(Idea $idea)
     {
-        $this->authorize('alter.idea', $idea);
+        $this->authorize('delete', $idea);
         $idea->delete();
 
         return redirect()
@@ -40,13 +40,15 @@ class IdeaController extends Controller
 
     public function edit(Idea $idea)
     {
-        $this->authorize('alter.idea', $idea);
+        $this->authorize('update', $idea);
         $editIdea = true;
         return view('ideas.show', compact('idea', 'editIdea'));
     }
 
     public function update(Idea $idea)
     {
+        $this->authorize('update', $idea);
+        
         $validated = request()->validate([
             'content' => 'required|max:100|min:2',
         ]);
