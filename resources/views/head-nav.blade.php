@@ -13,26 +13,36 @@
 
 
                     <li class="nav-item">
-                        <a class=" {{  (Route::is('login'))? 'active':''}} nav-link" aria-current="page" href="/login">Login</a>
+                        <a class=" {{ Route::is('login') ? 'active' : '' }} nav-link" aria-current="page"
+                            href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="{{ (Route::is('register'))? 'active':'' }} nav-link" href="/register">Register</a>
+                        <a class="{{ Route::is('register') ? 'active' : '' }} nav-link" href="/register">Register</a>
                     </li>
 
                 @endguest
 
                 @auth
 
+                    @if (auth()->user()->is_admin)
+                        <li class="nav-item">
+                            <a class="{{ Route::is('admin.dashboard') ? 'active' : '' }} nav-link"
+                                href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                        </li>
+                    @endif
+
+
                     <li class="nav-item">
-                        <form method="POST" action={{route('logout')}}>
+                        <form method="POST" action={{ route('logout') }}>
                             @csrf
                             <button class="btn btn-danger btn-sm">Logout</button>
                         </form>
-                       
+
                     </li>
 
                     <li class="nav-item">
-                        <a class="{{ (Route::is('user.show', Auth::id() ))? 'active':'' }} nav-link" href="{{route('user.show', Auth::id())}}">{{ Auth::user()->name }}</a>
+                        <a class="{{ Route::is('user.show', Auth::id()) ? 'active' : '' }} nav-link"
+                            href="{{ route('user.show', Auth::id()) }}">{{ Auth::user()->name }}</a>
                     </li>
 
 

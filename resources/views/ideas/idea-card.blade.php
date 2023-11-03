@@ -50,8 +50,8 @@
             <div class="mt-3 d-flex justify-content-between">
                 @include('ideas.like-btn')
                 <div>
-                    <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
-                        {{ $idea->created_at }} </span>
+                    <span class="fs-6 fw-light text-black"> <span class="fas fa-clock"> </span>
+                        {{ $idea->created_at->diffForHumans() }} </span>
                 </div>
             </div>
             <div>
