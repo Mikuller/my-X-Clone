@@ -23,9 +23,10 @@ class IdeaController extends Controller
             ->with('success', 'Idea Created Successfully');
     }
 
-    public function destroy(Idea $id)
+    public function destroy(Idea $idea)
     {
-        $id->delete();
+        $this->authorize('alter.idea', $idea);
+        $idea->delete();
 
         return redirect()
             ->route('dashboard')
@@ -39,6 +40,7 @@ class IdeaController extends Controller
 
     public function edit(Idea $idea)
     {
+        $this->authorize('alter.idea', $idea);
         $editIdea = true;
         return view('ideas.show', compact('idea', 'editIdea'));
     }

@@ -8,7 +8,7 @@
     
             <hr>
                 <div class="mt-3">
-                    @include('shared.idea-card')
+                    @include('ideas.idea-card')
                 </div>
              
         </div>

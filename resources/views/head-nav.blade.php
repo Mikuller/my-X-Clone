@@ -10,8 +10,6 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 @guest
-
-
                     <li class="nav-item">
                         <a class=" {{ Route::is('login') ? 'active' : '' }} nav-link" aria-current="page"
                             href="/login">Login</a>
